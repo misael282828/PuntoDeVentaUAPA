@@ -1,0 +1,38 @@
+C:\Users\HP\Desktop\Uapa Documentos y tareas\Quinto trimestre\trabajoFinalVentas\PuntoVentaPOS\bin\Debug\net8.0-windows\PuntoVentaPOS.exe
+C:\Users\HP\Desktop\Uapa Documentos y tareas\Quinto trimestre\trabajoFinalVentas\PuntoVentaPOS\bin\Debug\net8.0-windows\PuntoVentaPOS.deps.json
+C:\Users\HP\Desktop\Uapa Documentos y tareas\Quinto trimestre\trabajoFinalVentas\PuntoVentaPOS\bin\Debug\net8.0-windows\PuntoVentaPOS.runtimeconfig.json
+C:\Users\HP\Desktop\Uapa Documentos y tareas\Quinto trimestre\trabajoFinalVentas\PuntoVentaPOS\bin\Debug\net8.0-windows\PuntoVentaPOS.dll
+C:\Users\HP\Desktop\Uapa Documentos y tareas\Quinto trimestre\trabajoFinalVentas\PuntoVentaPOS\bin\Debug\net8.0-windows\PuntoVentaPOS.pdb
+C:\Users\HP\Desktop\Uapa Documentos y tareas\Quinto trimestre\trabajoFinalVentas\PuntoVentaPOS\bin\Debug\net8.0-windows\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\HP\Desktop\Uapa Documentos y tareas\Quinto trimestre\trabajoFinalVentas\PuntoVentaPOS\bin\Debug\net8.0-windows\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\HP\Desktop\Uapa Documentos y tareas\Quinto trimestre\trabajoFinalVentas\PuntoVentaPOS\bin\Debug\net8.0-windows\MySqlConnector.dll
+C:\Users\HP\Desktop\Uapa Documentos y tareas\Quinto trimestre\trabajoFinalVentas\PuntoVentaPOS\obj\Debug\net8.0-windows\PuntoVentaPOS.csproj.AssemblyReference.cache
+C:\Users\HP\Desktop\Uapa Documentos y tareas\Quinto trimestre\trabajoFinalVentas\PuntoVentaPOS\obj\Debug\net8.0-windows\PuntoVentaPOS.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HP\Desktop\Uapa Documentos y tareas\Quinto trimestre\trabajoFinalVentas\PuntoVentaPOS\obj\Debug\net8.0-windows\PuntoVentaPOS.AssemblyInfoInputs.cache
+C:\Users\HP\Desktop\Uapa Documentos y tareas\Quinto trimestre\trabajoFinalVentas\PuntoVentaPOS\obj\Debug\net8.0-windows\PuntoVentaPOS.AssemblyInfo.cs
+C:\Users\HP\Desktop\Uapa Documentos y tareas\Quinto trimestre\trabajoFinalVentas\PuntoVentaPOS\obj\Debug\net8.0-windows\PuntoVentaPOS.csproj.CoreCompileInputs.cache
+C:\Users\HP\Desktop\Uapa Documentos y tareas\Quinto trimestre\trabajoFinalVentas\PuntoVentaPOS\obj\Debug\net8.0-windows\PuntoVen.731F68EF.Up2Date
+C:\Users\HP\Desktop\Uapa Documentos y tareas\Quinto trimestre\trabajoFinalVentas\PuntoVentaPOS\obj\Debug\net8.0-windows\PuntoVentaPOS.dll
+C:\Users\HP\Desktop\Uapa Documentos y tareas\Quinto trimestre\trabajoFinalVentas\PuntoVentaPOS\obj\Debug\net8.0-windows\refint\PuntoVentaPOS.dll
+C:\Users\HP\Desktop\Uapa Documentos y tareas\Quinto trimestre\trabajoFinalVentas\PuntoVentaPOS\obj\Debug\net8.0-windows\PuntoVentaPOS.pdb
+C:\Users\HP\Desktop\Uapa Documentos y tareas\Quinto trimestre\trabajoFinalVentas\PuntoVentaPOS\obj\Debug\net8.0-windows\PuntoVentaPOS.genruntimeconfig.cache
+C:\Users\HP\Desktop\Uapa Documentos y tareas\Quinto trimestre\trabajoFinalVentas\PuntoVentaPOS\obj\Debug\net8.0-windows\ref\PuntoVentaPOS.dll
+C:\Users\HP\Downloads\PuntoDeVentaUAPA-main\PuntoVentaPOS\bin\Debug\net8.0-windows\PuntoVentaPOS.exe
+C:\Users\HP\Downloads\PuntoDeVentaUAPA-main\PuntoVentaPOS\bin\Debug\net8.0-windows\PuntoVentaPOS.deps.json
+C:\Users\HP\Downloads\PuntoDeVentaUAPA-main\PuntoVentaPOS\bin\Debug\net8.0-windows\PuntoVentaPOS.runtimeconfig.json
+C:\Users\HP\Downloads\PuntoDeVentaUAPA-main\PuntoVentaPOS\bin\Debug\net8.0-windows\PuntoVentaPOS.dll
+C:\Users\HP\Downloads\PuntoDeVentaUAPA-main\PuntoVentaPOS\bin\Debug\net8.0-windows\PuntoVentaPOS.pdb
+C:\Users\HP\Downloads\PuntoDeVentaUAPA-main\PuntoVentaPOS\bin\Debug\net8.0-windows\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\HP\Downloads\PuntoDeVentaUAPA-main\PuntoVentaPOS\bin\Debug\net8.0-windows\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\HP\Downloads\PuntoDeVentaUAPA-main\PuntoVentaPOS\bin\Debug\net8.0-windows\MySqlConnector.dll
+C:\Users\HP\Downloads\PuntoDeVentaUAPA-main\PuntoVentaPOS\obj\Debug\net8.0-windows\PuntoVentaPOS.csproj.AssemblyReference.cache
+C:\Users\HP\Downloads\PuntoDeVentaUAPA-main\PuntoVentaPOS\obj\Debug\net8.0-windows\PuntoVentaPOS.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HP\Downloads\PuntoDeVentaUAPA-main\PuntoVentaPOS\obj\Debug\net8.0-windows\PuntoVentaPOS.AssemblyInfoInputs.cache
+C:\Users\HP\Downloads\PuntoDeVentaUAPA-main\PuntoVentaPOS\obj\Debug\net8.0-windows\PuntoVentaPOS.AssemblyInfo.cs
+C:\Users\HP\Downloads\PuntoDeVentaUAPA-main\PuntoVentaPOS\obj\Debug\net8.0-windows\PuntoVentaPOS.csproj.CoreCompileInputs.cache
+C:\Users\HP\Downloads\PuntoDeVentaUAPA-main\PuntoVentaPOS\obj\Debug\net8.0-windows\PuntoVen.731F68EF.Up2Date
+C:\Users\HP\Downloads\PuntoDeVentaUAPA-main\PuntoVentaPOS\obj\Debug\net8.0-windows\PuntoVentaPOS.dll
+C:\Users\HP\Downloads\PuntoDeVentaUAPA-main\PuntoVentaPOS\obj\Debug\net8.0-windows\refint\PuntoVentaPOS.dll
+C:\Users\HP\Downloads\PuntoDeVentaUAPA-main\PuntoVentaPOS\obj\Debug\net8.0-windows\PuntoVentaPOS.pdb
+C:\Users\HP\Downloads\PuntoDeVentaUAPA-main\PuntoVentaPOS\obj\Debug\net8.0-windows\PuntoVentaPOS.genruntimeconfig.cache
+C:\Users\HP\Downloads\PuntoDeVentaUAPA-main\PuntoVentaPOS\obj\Debug\net8.0-windows\ref\PuntoVentaPOS.dll
