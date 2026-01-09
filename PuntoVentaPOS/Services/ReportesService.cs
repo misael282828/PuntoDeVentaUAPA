@@ -45,7 +45,18 @@ public sealed class ReportesService
         var table = new DataTable();
 
         using var connection = Db.CreateConnection();
-        using var command = new MySqlCommand("SELECT CAST(Fecha AS DATE) AS Dia, SUM(Total) AS Total FROM Facturas WHERE Fecha BETWEEN @Desde AND @Hasta GROUP BY CAST(Fecha AS DATE)", connection);
+        using var command = new MySqlCommand(
+            "SELECT CAST(Fecha AS DATE) AS Dia, " +
+            "SUM(Total) AS Total, " +
+            "COUNT(*) AS NumFacturas, " +
+            "ROUND(AVG(Total),2) AS Promedio, " +
+            "MIN(Total) AS Minimo, " +
+            "MAX(Total) AS Maximo, " +
+            "SUM(CASE WHEN EsCredito=1 THEN Total ELSE 0 END) AS TotalCredito, " +
+            "SUM(CASE WHEN EsCredito=0 THEN Total ELSE 0 END) AS TotalContado " +
+            "FROM Facturas WHERE Fecha BETWEEN @Desde AND @Hasta GROUP BY CAST(Fecha AS DATE) ORDER BY Dia",
+            connection);
+
         command.Parameters.AddWithValue("@Desde", desde);
         command.Parameters.AddWithValue("@Hasta", hasta);
 

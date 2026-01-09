@@ -1,6 +1,7 @@
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Globalization;
 using System.Windows.Forms;
 using PuntoVentaPOS.Services;
 
@@ -151,16 +152,56 @@ public sealed class ReporteVentasDiariasForm : Form
         }
 
         var lines = new List<string>();
-        var headers = _data.Columns.Cast<DataColumn>().Select(c => c.ColumnName);
+
+        // Header (use column names as provided by the query)
+        var headers = _data.Columns.Cast<DataColumn>().Select(c => EscapeCsv(c.ColumnName));
         lines.Add(string.Join(",", headers));
 
+        // Rows: format dates and numbers, and escape fields
         foreach (DataRow row in _data.Rows)
         {
-            var values = row.ItemArray.Select(v => v?.ToString()?.Replace(",", " ") ?? string.Empty);
-            lines.Add(string.Join(",", values));
+            var cells = new List<string>();
+            foreach (DataColumn col in _data.Columns)
+            {
+                var v = row[col];
+                if (v == DBNull.Value)
+                {
+                    cells.Add("");
+                    continue;
+                }
+
+                switch (v)
+                {
+                    case DateTime dt:
+                        cells.Add(EscapeCsv(dt.ToString("yyyy-MM-dd")));
+                        break;
+                    case decimal dec:
+                        cells.Add(EscapeCsv(dec.ToString("F2", CultureInfo.InvariantCulture)));
+                        break;
+                    case double d:
+                        cells.Add(EscapeCsv(d.ToString("F2", CultureInfo.InvariantCulture)));
+                        break;
+                    case float f:
+                        cells.Add(EscapeCsv(f.ToString("F2", CultureInfo.InvariantCulture)));
+                        break;
+                    default:
+                        cells.Add(EscapeCsv(v.ToString() ?? string.Empty));
+                        break;
+                }
+            }
+
+            lines.Add(string.Join(",", cells));
         }
 
         File.WriteAllLines(dialog.FileName, lines);
         MessageBox.Show("Reporte exportado.", "OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
+    }
+
+    private static string EscapeCsv(string s)
+    {
+        if (s == null) return string.Empty;
+        var mustQuote = s.Contains(',') || s.Contains('"') || s.Contains('\n') || s.Contains('\r');
+        var escaped = s.Replace("\"", "\"\"");
+        return mustQuote ? $"\"{escaped}\"" : escaped;
     }
 }
