@@ -16,6 +16,7 @@ public sealed class CxcForm : Form
 
     private readonly CxcService _service = new();
     private readonly BindingSource _binding = new();
+    private readonly FacturasService _facturasService = new();
     private DataGridView _grid = null!;
     private NumericUpDown _numMonto = null!;
 
@@ -113,6 +114,27 @@ public sealed class CxcForm : Form
         g.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(PuntoVentaPOS.Models.CuentaPorCobrar.FechaVencimiento), HeaderText = "FechaVencimiento", Width = 160, DefaultCellStyle = new DataGridViewCellStyle { Format = "yyyy-MM-dd" } });
         g.Columns.Add(new DataGridViewCheckBoxColumn { DataPropertyName = nameof(PuntoVentaPOS.Models.CuentaPorCobrar.Activa), HeaderText = "Activa", Width = 80 });
 
+        // Double-click to view invoice details
+        g.CellDoubleClick += (_, _) =>
+        {
+            if (_binding.Current is CuentaPorCobrar cuenta)
+            {
+                MostrarDetallesFactura(cuenta.IdFactura);
+            }
+        };
+
+        // Click on Balance column to auto-fill the amount field
+        g.CellClick += (_, e) =>
+        {
+            if (e.ColumnIndex >= 0 && g.Columns[e.ColumnIndex].DataPropertyName == nameof(PuntoVentaPOS.Models.CuentaPorCobrar.Balance))
+            {
+                if (_binding.Current is CuentaPorCobrar cuenta)
+                {
+                    _numMonto.Value = cuenta.Balance;
+                }
+            }
+        };
+
         return g;
     }
 
@@ -166,6 +188,37 @@ public sealed class CxcForm : Form
         {
             _service.Pagar(cuenta.IdFactura, monto);
             CargarDatos();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+    }
+
+    private void MostrarDetallesFactura(int idFactura)
+    {
+        try
+        {
+            var facturas = _facturasService.Listar(null, null);
+            var factura = facturas.FirstOrDefault(f => f.IdFactura == idFactura);
+            if (factura == null)
+            {
+                MessageBox.Show("Factura no encontrada.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            var msg = $"Factura #{factura.IdFactura}\n" +
+                      $"Cliente: {factura.Cliente}\n" +
+                      $"Fecha: {factura.Fecha:yyyy-MM-dd HH:mm}\n" +
+                      $"Total: {factura.Total:C2}\n" +
+                      $"Crédito: {(factura.EsCredito ? "Sí" : "No")}\n\n" +
+                      $"Detalles:\n";
+            foreach (var detalle in factura.Detalles ?? new List<FacturaDetalle>())
+            {
+                msg += $"  - {detalle.Producto}: {detalle.Cantidad} x {detalle.PrecioUnitario:C2} = {detalle.Total:C2}\n";
+            }
+
+            MessageBox.Show(msg, "Detalles de Factura", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         catch (Exception ex)
         {
