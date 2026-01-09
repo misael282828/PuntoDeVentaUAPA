@@ -100,4 +100,41 @@ public sealed class ProductosService
         connection.Open();
         command.ExecuteNonQuery();
     }
+
+    // Inserta productos de ejemplo si la tabla tiene menos de `minCount` registros.
+    public void SeedSampleProducts(int minCount = 10)
+    {
+        var existentes = Listar(null);
+        if (existentes.Count >= minCount) return;
+
+        var ejemplos = new List<Producto>
+        {
+            new Producto { Codigo = "P200", Nombre = "Leche 1L", Precio = 35m, Stock = 100, Activo = true },
+            new Producto { Codigo = "P201", Nombre = "Pan Integral 500g", Precio = 20m, Stock = 200, Activo = true },
+            new Producto { Codigo = "P202", Nombre = "Huevos 12u", Precio = 80m, Stock = 120, Activo = true },
+            new Producto { Codigo = "P203", Nombre = "Aceite 1L", Precio = 150m, Stock = 60, Activo = true },
+            new Producto { Codigo = "P204", Nombre = "Arroz 1kg", Precio = 50m, Stock = 180, Activo = true },
+            new Producto { Codigo = "P205", Nombre = "Frijoles 1kg", Precio = 62m, Stock = 140, Activo = true },
+            new Producto { Codigo = "P206", Nombre = "Azucar 1kg", Precio = 45m, Stock = 120, Activo = true },
+            new Producto { Codigo = "P207", Nombre = "Harina 1kg", Precio = 40m, Stock = 90, Activo = true },
+            new Producto { Codigo = "P208", Nombre = "Cafe 250g", Precio = 120m, Stock = 70, Activo = true },
+            new Producto { Codigo = "P209", Nombre = "Lechuga Unit", Precio = 15m, Stock = 60, Activo = true }
+        };
+
+        foreach (var p in ejemplos)
+        {
+            // evitar duplicados por nombre
+            if (!existentes.Any(x => string.Equals(x.Nombre, p.Nombre, StringComparison.OrdinalIgnoreCase)))
+            {
+                try
+                {
+                    Crear(p);
+                }
+                catch
+                {
+                    // ignore insert errors for seed
+                }
+            }
+        }
+    }
 }

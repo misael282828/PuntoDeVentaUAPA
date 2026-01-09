@@ -171,29 +171,9 @@ public sealed class FacturaForm : Form
             _cmbClientes.DataSource = clientes;
             _cmbClientes.DisplayMember = "Nombre";
             _cmbClientes.ValueMember = "IdCliente";
-
+            // Ensure DB has a reasonable number of sample products (will insert if missing)
+            _productosService.SeedSampleProducts(10);
             _productos = _productosService.Listar(null);
-            // Si hay pocos productos en la base (por ejemplo ambiente de prueba), agregar ejemplos temporales
-            if (_productos == null || _productos.Count < 6)
-            {
-                var nextId = (_productos?.Select(p => p.IdProducto).DefaultIfEmpty(0).Max() ?? 0) + 1;
-                var ejemplos = new List<Producto>
-                {
-                    new Producto { IdProducto = nextId++, Codigo = "P100", Nombre = "Leche 1L", Precio = 35m, Stock = 100, Activo = true },
-                    new Producto { IdProducto = nextId++, Codigo = "P101", Nombre = "Pan-Integral", Precio = 20m, Stock = 200, Activo = true },
-                    new Producto { IdProducto = nextId++, Codigo = "P102", Nombre = "Huevos 12u", Precio = 80m, Stock = 50, Activo = true },
-                    new Producto { IdProducto = nextId++, Codigo = "P103", Nombre = "Aceite 1L", Precio = 150m, Stock = 60, Activo = true },
-                    new Producto { IdProducto = nextId++, Codigo = "P104", Nombre = "Azucar 1kg", Precio = 45m, Stock = 120, Activo = true }
-                };
-
-                if (_productos == null) _productos = new List<Producto>();
-                // Evitar duplicados por Id
-                foreach (var ex in ejemplos)
-                {
-                    if (!_productos.Any(p => p.Nombre == ex.Nombre))
-                        _productos.Add(ex);
-                }
-            }
             _cmbProductos.DataSource = _productos;
             _cmbProductos.DisplayMember = "Nombre";
             _cmbProductos.ValueMember = "IdProducto";
