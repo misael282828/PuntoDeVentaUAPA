@@ -91,7 +91,7 @@ public sealed class CxcForm : Form
             RowHeadersVisible = false,
             BackgroundColor = Color.White,
             BorderStyle = BorderStyle.None,
-            AutoGenerateColumns = true
+            AutoGenerateColumns = false
         };
 
         g.EnableHeadersVisualStyles = false;
@@ -106,6 +106,13 @@ public sealed class CxcForm : Form
         g.DefaultCellStyle.SelectionForeColor = Color.Black;
         g.AlternatingRowsDefaultCellStyle.BackColor = CBg;
 
+        // Columns: IdFactura, Cliente, Balance (moneda), FechaVencimiento (fecha), Activa
+        g.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(PuntoVentaPOS.Models.CuentaPorCobrar.IdFactura), HeaderText = "IdFactura", Width = 100 });
+        g.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(PuntoVentaPOS.Models.CuentaPorCobrar.Cliente), HeaderText = "Cliente", Width = 360 });
+        g.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(PuntoVentaPOS.Models.CuentaPorCobrar.Balance), HeaderText = "Balance", Width = 140, DefaultCellStyle = new DataGridViewCellStyle { Alignment = DataGridViewContentAlignment.MiddleRight, Format = "C2" } });
+        g.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = nameof(PuntoVentaPOS.Models.CuentaPorCobrar.FechaVencimiento), HeaderText = "FechaVencimiento", Width = 160, DefaultCellStyle = new DataGridViewCellStyle { Format = "yyyy-MM-dd" } });
+        g.Columns.Add(new DataGridViewCheckBoxColumn { DataPropertyName = nameof(PuntoVentaPOS.Models.CuentaPorCobrar.Activa), HeaderText = "Activa", Width = 80 });
+
         return g;
     }
 
@@ -113,6 +120,9 @@ public sealed class CxcForm : Form
     {
         try
         {
+            // seed CxC from existing credit invoices if any missing
+            _service.SeedFromFacturas();
+
             var lista = _service.ListarPendientes();
             _binding.DataSource = new BindingList<CuentaPorCobrar>(lista);
             NotificarProximas(lista);

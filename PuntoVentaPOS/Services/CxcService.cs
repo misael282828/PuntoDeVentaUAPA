@@ -31,6 +31,31 @@ public sealed class CxcService
         return cuentas;
     }
 
+    // Inserta en CxC facturas a credito que no tengan registro en la tabla CxC (balance = Total, vencimiento = Fecha+30d)
+    public void SeedFromFacturas()
+    {
+        using var connection = Db.CreateConnection();
+        // Insertar facturas a credito que no existen en CxC
+        var sql = @"
+            INSERT INTO CxC (IdFactura, Cliente, Balance, FechaVencimiento, Activa)
+            SELECT f.IdFactura, COALESCE(c.Nombre, ''), f.Total, DATE_ADD(f.Fecha, INTERVAL 30 DAY), 1
+            FROM Facturas f
+            LEFT JOIN CxC x ON x.IdFactura = f.IdFactura
+            LEFT JOIN Clientes c ON c.IdCliente = f.IdCliente
+            WHERE f.EsCredito = 1 AND x.IdFactura IS NULL";
+
+        using var command = new MySqlCommand(sql, connection);
+        connection.Open();
+        try
+        {
+            command.ExecuteNonQuery();
+        }
+        catch
+        {
+            // ignore errors during seed
+        }
+    }
+
     public void Pagar(int idFactura, decimal monto)
     {
         using var connection = Db.CreateConnection();
